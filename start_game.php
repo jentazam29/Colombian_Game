@@ -11,6 +11,7 @@ if (isset($_COOKIE['j_cedula'])) {
     $id = $jugador[0]['id'];
     $nombre = $jugador[0]['nombre_jugador'];
     $cedula = $jugador[0]['cedula'];
+    $win = '';
 
     if (isset($_POST['send'])) {
         
@@ -26,6 +27,12 @@ if (isset($_COOKIE['j_cedula'])) {
             $consecutivo = $_COOKIE['consecutivo'];
         } else {
             $consecutivo = 0;
+        }
+
+        if ($_COOKIE['puntos'] == 25) {
+            $update = $database->update_puntos($id, 25);
+            setcookie('felicitaciones', 0, time() + 5, 'cookies/'); 
+            header ('Location: iniciar.php');
         }
         
         if ($resultado == 1) {
@@ -58,6 +65,7 @@ if (isset($_COOKIE['j_cedula'])) {
         } else {
 
             $update = $database->update_puntos($id, ($_COOKIE['puntos'] - 1));
+            setcookie('resultado', 0, time() + 5, 'cookies/'); 
 
             setcookie('puntos', 1, time() + 3600, 'cookies/');
             setcookie('consecutivo', 2, time() + 3600, 'cookies/');

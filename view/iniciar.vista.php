@@ -66,6 +66,12 @@
                 </div>
             </div>
         </form>
+        <?php if(isset($_COOKIE['resultado'])): ?>
+        <h1 style="font-size: 40px; margin-top: 10px; text-align: center; color: red;">Vaya! has perdido! Vuelve a Iniciar y demuestra que si sabes</h1>
+        <?php endif; ?>
+        <?php if(isset($_COOKIE['felicitaciones'])): ?>
+        <h1 style="font-size: 40px; margin-top: 10px; text-align: center; color: green;"><i class="fas fa-trophy text-warning"></i></span> - Felicitaciones! Realmente eres un Colombiano de corazon.</h1>
+        <?php endif; ?>
     </div>
 </section>
 
